@@ -1,0 +1,26 @@
+version: 1
+root:
+  level: DEBUG
+  handlers: [console]
+loggers:
+  appLogger:
+    level: DEBUG
+    handlers: [console,file]
+    propagate: 0
+handlers:
+  console:
+    class: logging.StreamHandler
+    level: DEBUG
+    formatter: console
+    stream: ext://sys.stdout
+  file:
+    class: logging.FileHandler
+    level: DEBUG
+    formatter: file
+    filename: app.log
+formatters:
+  console:
+    format: "%(name)s %(levelname)s: %(message)s"
+  file:
+    format: "%(asctime)s %(name)s %(levelname)s [%(process)d]: %(message)s"
+  
