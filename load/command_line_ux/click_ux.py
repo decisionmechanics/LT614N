@@ -1,41 +1,20 @@
 import click
 
-CONTEXT_SETTINGS = {"help_option_names": ["-h", "--help"]}
 
-
-@click.group(context_settings=CONTEXT_SETTINGS)
 @click.version_option(version="1.0.0")
-def main():
-    pass
-
-
-@main.command(help="Export as text file")
-@click.argument("file_path")
+@click.command()
+@click.argument("filename", type=click.Path(exists=True))
 @click.option(
-    "--delimiter",
-    "-d",
-    type=str,
-    default=",",
-    help=r"Delimiter to use---e.g. ',', '|'.",
+    "-f",
+    "--format",
+    type=click.Choice(["CSV", "TSV", "JSON"]),
+    default="CSV",
+    help="File format.",
     show_default=True,
 )
-def text(*args, **kwargs):
-    print("Exporting as text file")
-    print(kwargs)
+def main(**kwargs):
+    "FILENAME: Path to file." ""
 
-
-@main.command(help="Export as JOSN document")
-@click.argument("file_path")
-@click.option(
-    "--indent",
-    "-i",
-    type=int,
-    default=None,
-    help="Indentation level for pretty printing.",
-    show_default=True,
-)
-def json(*args, **kwargs):
-    print("Exporting as JSON")
     print(kwargs)
 
 
