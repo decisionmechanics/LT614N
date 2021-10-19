@@ -11,7 +11,7 @@ KM_TO_MILES_FACTOR = 0.6213712
     "--units",
     type=click.Choice(["km", "miles"]),
     default="km",
-    help="Distance unit to convert from.",
+    help="Distance units to convert from.",
     show_default=True,
 )
 def main(value, units):
