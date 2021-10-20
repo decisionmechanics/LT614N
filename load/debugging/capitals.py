@@ -9,10 +9,10 @@ class YesNo(IntEnum):
     NO = 1
 
 
-CaptialsType = Dict[str, str]
+CapitalsType = Dict[str, str]
 
 
-def load_capitals(document_path: str) -> CaptialsType:
+def load_capitals(document_path: str) -> CapitalsType:
     with open(document_path) as f:
         return {capital["country"]: capital["capital"] for capital in json.load(f)}
 
@@ -21,26 +21,26 @@ def choose_random_country(countries: List[str]):
     return countries[random.randint(0, len(countries) - 1)]
 
 
-def choose_candidate_capitals(capitals: CaptialsType, chosen_country: str) -> List[str]:
-    other_captials = [
+def choose_candidate_capitals(capitals: CapitalsType, chosen_country: str) -> List[str]:
+    other_capitals = [
         capital for country, capital in capitals.items() if country != chosen_country
     ]
 
-    random.shuffle(other_captials)
-    other_captials = other_captials[:3]
+    random.shuffle(other_capitals)
+    other_capitals = other_capitals[:3]
 
-    candidate_capitals = [capitals[chosen_country]] + other_captials[:3]
+    candidate_capitals = [capitals[chosen_country]] + other_capitals[:3]
     random.shuffle(candidate_capitals)
 
     return candidate_capitals
 
 
-def play_once(countries: List[str], capitals: CaptialsType) -> bool:
+def play_once(countries: List[str], capitals: CapitalsType) -> bool:
     chosen_country = choose_random_country(countries)
     chosen_capital = capitals[chosen_country]
     candidate_capitals = choose_candidate_capitals(capitals, chosen_country)
 
-    print(f"What is the captial of {chosen_country}?")
+    print(f"What is the capital of {chosen_country}?")
 
     for i, candidate_capital in enumerate(candidate_capitals):
         print(f"  {i + 1}. {candidate_capital}")
@@ -52,7 +52,7 @@ def play_once(countries: List[str], capitals: CaptialsType) -> bool:
     if correct:
         print("Well done!")
     else:
-        print(f"Sorry. The captial of {chosen_country} is {chosen_capital}.")
+        print(f"Sorry. The capital of {chosen_country} is {chosen_capital}.")
 
     return correct
 
