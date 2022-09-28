@@ -55,6 +55,7 @@ def test_shuffle_deck_shuffles_last_card():
     last_card = deck[-1]
 
     random.seed(614)
+    
     # Act
     cards.shuffle_deck(deck)
 
