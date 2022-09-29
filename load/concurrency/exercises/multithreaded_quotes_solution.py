@@ -12,7 +12,7 @@ thread_local = threading.local()
 
 
 def get_session():
-    """Session is not thread-safe, so each thread needs it's own session."""
+    """Session is not thread-safe, so each thread needs its own session."""
     if not hasattr(thread_local, "session"):
         thread_local.session = requests.Session()
     return thread_local.session
